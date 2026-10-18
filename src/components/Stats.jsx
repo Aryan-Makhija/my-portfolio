@@ -1,9 +1,9 @@
 "use client";
 // Infinite marquee strip of big lime numbers (between Engineering and Contact)
 const items = [
-  { v: "0+", l: "DSA Problems" },
-  { v: "3+", l: "Full Stack Projects" },
-  { v: "1+", l: "Years Development" },
+  { v: "300+", l: "DSA Problems" },
+  { v: "5+", l: "Full Stack Projects" },
+  { v: "2+", l: "Years Development" },
   { v: "Multiple", l: "Technologies" },
 ];
 

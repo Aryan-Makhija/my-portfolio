@@ -1,67 +1,144 @@
 "use client";
-import { useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { X, ArrowRight, Sparkles } from "lucide-react";
 
-export default function WelcomeModal({ open, onClose }) {
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { X, ArrowRight, Sparkles, Terminal, Code2 } from "lucide-react";
+
+const welcomeCopy =
+  "Hey there! 👋 Welcome to my portfolio! I build automated CLI tools, sleek web apps, and full-stack experiences. Ready to explore?";
+const welcomeCharacters = Array.from(welcomeCopy);
+const sessionKey = "hasSeenPortfolioWelcome";
+
+function TechEmblemAvatar({ reduceMotion }) {
+  return (
+    <motion.div
+      aria-hidden="true"
+      animate={reduceMotion ? undefined : { y: [0, -6, 0], rotate: [0, 2, 0] }}
+      transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+      className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-2xl border border-lime/40 bg-lime/10 shadow-[0_0_35px_rgba(163,243,70,0.25)]"
+    >
+      {/* Outer ambient pulse ring */}
+      <div className="absolute inset-0 rounded-2xl border border-lime/20 animate-ping opacity-25 pointer-events-none" />
+      
+      {/* Center Icon */}
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0b1a10] border border-lime/30 text-lime shadow-inner">
+        <Code2 size={26} className="stroke-[2.2]" />
+      </div>
+
+      {/* Floating mini status dot */}
+      <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-lime"></span>
+      </span>
+    </motion.div>
+  );
+}
+
+export default function WelcomeModal({ open: externalOpen, onClose: externalOnClose }) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const [typedCopy, setTypedCopy] = useState("");
+  const reduceMotion = useReducedMotion();
+
+  const isControlled = externalOpen !== undefined;
+  const open = isControlled ? externalOpen : internalOpen;
+
+  const handleClose = () => {
+    try {
+      window.sessionStorage.setItem(sessionKey, "true");
+    } catch {
+      // Fallback if sessionStorage is disabled
+    }
+    if (isControlled && externalOnClose) {
+      externalOnClose();
+    } else {
+      setInternalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isControlled) return;
+    try {
+      if (window.sessionStorage.getItem(sessionKey) !== "true") {
+        setInternalOpen(true);
+      }
+    } catch {
+      setInternalOpen(true);
+    }
+  }, [isControlled]);
+
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => e.key === "Escape" && onClose();
+    const onKey = (e) => e.key === "Escape" && handleClose();
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [open, onClose]);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      setTypedCopy("");
+      return undefined;
+    }
+    if (reduceMotion) {
+      setTypedCopy(welcomeCopy);
+      return undefined;
+    }
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += 1;
+      setTypedCopy(welcomeCharacters.slice(0, index).join(""));
+      if (index >= welcomeCharacters.length) window.clearInterval(timer);
+    }, 20);
+    return () => window.clearInterval(timer);
+  }, [open, reduceMotion]);
 
   return (
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.3 }}
         >
           <motion.div
-            className="relative w-full max-w-[400px] rounded-3xl border border-white/10 bg-[#0d0e13] p-6 text-center shadow-[0_0_80px_-20px_rgba(163,243,70,0.35)]"
-            initial={{ scale: 0.9, y: 30, opacity: 0 }}
+            className="relative w-full max-w-[420px] rounded-3xl border border-white/10 bg-[#0d0e13] p-6 text-center shadow-[0_0_80px_-20px_rgba(163,243,70,0.35)] sm:p-7"
+            initial={{ scale: 0.9, y: 25, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.95, y: 20, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 220, damping: 22 }}
+            exit={{ scale: 0.95, y: 15, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 240, damping: 24 }}
           >
-            <button onClick={onClose} aria-label="Close" className="absolute right-4 top-4 text-muted transition hover:text-fg">
+            <button
+              onClick={handleClose}
+              aria-label="Close"
+              className="absolute right-4 top-4 rounded-lg p-1.5 text-muted transition hover:bg-white/10 hover:text-fg"
+            >
               <X size={16} />
             </button>
 
-            {/* avatar */}
-            <motion.div
-              className="mx-auto flex h-[72px] w-[72px] items-center justify-center rounded-full border border-lime/40 bg-[#0b1a10]"
-              animate={{ boxShadow: ["0 0 0 0 rgba(163,243,70,.35)", "0 0 0 16px rgba(163,243,70,0)"] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <svg viewBox="0 0 64 64" className="h-14 w-14">
-                <circle cx="32" cy="34" r="18" fill="#f4d2b0" />
-                <path d="M14 30c0-14 10-20 20-18 10 2 16 10 16 20-4-6-12-8-18-8s-14 2-18 6z" fill="#3ab4ff" />
-                <circle cx="26" cy="35" r="2" fill="#222" />
-                <circle cx="38" cy="35" r="2" fill="#222" />
-                <path d="M26 42q6 5 12 0" stroke="#222" strokeWidth="2" fill="none" strokeLinecap="round" />
-              </svg>
-            </motion.div>
+            {/* Tech Emblem Avatar */}
+            <TechEmblemAvatar reduceMotion={reduceMotion} />
 
             <p className="mt-4 flex items-center justify-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-lime">
               <Sparkles size={11} /> Portfolio online
             </p>
-            <h3 className="mt-2 font-display text-2xl font-bold">A little introduction</h3>
+            <h3 className="mt-1.5 font-display text-2xl font-bold tracking-tight text-fg">
+              A little introduction
+            </h3>
 
-            <div className="mt-5 rounded-xl border border-white/[0.06] bg-card p-4 text-left text-sm leading-relaxed text-fg/90">
-              Hey there! 👋 Welcome to my portfolio! I build automated CLI tools, sleek web apps, and full-stack
-              experiences. Ready to explore?
+            {/* Typewriter message box */}
+            <div className="mt-4 min-h-[5.5rem] rounded-xl border border-white/[0.08] bg-card p-4 text-left text-sm leading-relaxed text-fg/90">
+              {typedCopy}
+              {typedCopy.length < welcomeCopy.length ? (
+                <span aria-hidden="true" className="ml-0.5 inline-block h-4 w-1 animate-pulse bg-lime align-middle" />
+              ) : null}
             </div>
 
-            <button onClick={onClose} className="btn-lime mt-5 w-full justify-center rounded-lg">
+            <button onClick={handleClose} className="btn-lime mt-5 flex w-full items-center justify-center gap-2 rounded-xl py-3 font-semibold">
               Let&apos;s go! <ArrowRight size={14} />
             </button>
             <p className="mt-3 font-mono text-[10px] text-muted">Press ESC to skip</p>
