@@ -5,41 +5,8 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { Code, ExternalLink, Check, FolderGit2, X, ArrowUpRight } from "lucide-react";
 
 // Top 3 Featured Projects (for the cinematic scroll section)
+// Note: You can add `video: "/projects/vitalens.mp4"` for each project to support hover video previews!
 const featuredProjects = [
-  {
-    name: "Vitalens",
-    summary: "AI-powered health diagnosis and wellness platform.",
-    problem: "People collect health data everywhere but never get one clear, trustworthy read on what it means.",
-    features: [
-      "Symptom analysis with structured AI output",
-      "Longitudinal vitals dashboard",
-      "Typed schema validation across the stack",
-      "Role-aware auth and session handling",
-    ],
-    stack: ["Next.js", "PostgreSQL", "Drizzle ORM", "Gemini AI", "Zod", "Clerk"],
-    accent: "mint",
-    glow: "rgba(163,243,70,0.18)",
-    image: "/projects/vitalens.png",
-    github: "#",
-    demo: "#",
-  },
-  {
-    name: "EduAI",
-    summary: "AI-powered online learning platform.",
-    problem: "Course content is static, so learners stall the moment they hit something they don't understand.",
-    features: [
-      "AI tutor grounded in course material",
-      "Adaptive learning paths and progress state",
-      "Streaming responses with graceful fallbacks",
-      "Instructor content pipeline",
-    ],
-    stack: ["Next.js", "Node.js", "MongoDB", "LLM APIs", "Tailwind"],
-    accent: "violet",
-    glow: "rgba(139,92,246,0.20)",
-    image: "/projects/eduai.png",
-    github: "#",
-    demo: "#",
-  },
   {
     name: "DocuMind.ai",
     summary: "Multi-tenant document intelligence platform with conversational RAG.",
@@ -50,13 +17,52 @@ const featuredProjects = [
       "Docker containerization & Redis rate limiting",
       "Secure multi-tenant workspace isolation",
     ],
-    stack: ["Next.js", "Python", "Pinecone", "LangChain", "Docker", "Redis"],
+    stack: ["Langchain.js", "Next.js", "Cohere Reranking", "PineCone", "PostgreSQL", "Docker", "Redis", "Gemini Embedding","Clerk"],
     accent: "cyan",
     glow: "rgba(20,184,166,0.18)",
-    image: "/projects/documind.png",
-    github: "#",
-    demo: "#",
+    image: "./DocuMind.png",
+    video: "./DocuMind-vidoe.mp4",
+    github: "https://github.com/Aryan-Makhija/DocuMind.ai.git",
+    demo: "https://documind-ai-5rh8.onrender.com/",
   },
+  {
+    name: "EduAI",
+    summary: "Instant, AI-Driven Personalized Course Generation Platform",
+    problem: "Course content is static, so learners stall the moment they hit something they don't understand.",
+    features: [
+      "AI tutor grounded in course material",
+      "Adaptive learning paths and progress state",
+      "Streaming responses with graceful fallbacks",
+      "Instructor content pipeline",
+    ],
+    stack: ["Next.js", "Node.js", "PostgresSQL", "LLM APIs","Youtube APIs", "Tailwind", "Docker", "Nginx Load Balancing" ,"Clerk" ],
+    accent: "violet",
+    glow: "rgba(139,92,246,0.20)",
+    image: "./EduAi.png",
+    video: "./EduAi-video.mp4",
+    github: "https://github.com/Aryan-Makhija/EduAI.git",
+    demo: "https://eduai-puce.vercel.app/",
+  },
+  {
+    name: "Vitalens",
+    summary: "AI-Powered Early Health Diagnosis & Wellness Monitoring Platform",
+    problem: "People collect health data everywhere but never get one clear, trustworthy read on what it means.",
+    features: [
+      "Symptom analysis with structured AI output",
+      "Longitudinal vitals dashboard",
+      "Typed schema validation across the stack",
+      "Role-aware auth and session handling",
+    ],
+    stack: ["Next.js", "PostgreSQL", "Drizzle ORM", "Gemini AI", "Zod", "Clerk", "Docker"],
+    accent: "mint",
+    glow: "rgba(163,243,70,0.18)",
+    image: "./Vitalens.png",
+    video: "./Vitalens-vidoe.mp4",
+    github: "https://github.com/Aryan-Makhija/Vitalens.git",
+    demo: "https://vitalens-eight.vercel.app/",
+  },
+
+
 ];
 
 // All Projects (Shown inside the modal view)
@@ -67,20 +73,22 @@ const allProjects = [
     summary: "Real-time messaging application with presence indicators.",
     problem: "Keeping chat states synchronized across multiple concurrent users without latency overhead.",
     features: ["Real-time contact stack ordering", "Presence indicators", "Socket.io event management"],
-    stack: ["React", "Node.js", "Express", "Socket.io", "MongoDB"],
+    stack: ["React", "Node.js", "Web Sockets","Express", "MongoDB"],
     image: "/projects/nexus.png",
-    github: "#",
-    demo: "#",
+    video: "/projects/nexus.mp4",
+    github: "https://github.com/Aryan-Makhija/NexusChat.git",
+    demo: "https://realtime-chat-application-umber.vercel.app/",
   },
   {
     name: "ShopVerse",
-    summary: "Multi-vendor e-commerce platform with animated workflows.",
+    summary: "Modern, Feature-Rich Multi-Vendor E-Commerce Platform",
     problem: "Standard e-commerce templates lack fluid micro-interactions and fast catalog filtering.",
     features: ["Animated navigation headers", "Vendor dashboard analytics", "Cart state management"],
     stack: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
     image: "/projects/shopverse.png",
-    github: "#",
-    demo: "#",
+    video: "/projects/shopverse.mp4",
+    github: "https://github.com/Aryan-Makhija/ShopVerse.git",
+    demo: "https://shop-verse-teal.vercel.app/",
   },
 ];
 
@@ -93,12 +101,24 @@ const accentGlow = {
 // Internal Project Card Render Component (Featured)
 function ProjectContent({ project, compact = false }) {
   const [imageLoaded, setImageLoaded] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  // Handle video play/pause sync on hover
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isHovered && project.video) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => { });
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isHovered, project.video]);
 
   return (
     <div
-      className={`grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] ${
-        compact ? "md:grid-cols-[0.9fr_1.1fr] md:gap-7 lg:grid-cols-[1.05fr_1fr] lg:gap-10" : ""
-      }`}
+      className={`grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] ${compact ? "md:grid-cols-[0.9fr_1.1fr] md:gap-7 lg:grid-cols-[1.05fr_1fr] lg:gap-10" : ""
+        }`}
     >
       <motion.div
         key={`${project.name}-image`}
@@ -106,19 +126,41 @@ function ProjectContent({ project, compact = false }) {
         animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
         exit={{ opacity: 0, scale: 1.04, y: -25, filter: "blur(12px)" }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="relative order-1 overflow-hidden rounded-xl border border-white/10 bg-[#0b0c12] shadow-2xl"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`relative order-xl overflow-hidden rounded-xl border border-white/10 bg-[#0b0c12] shadow-2xl w-full ${compact ? "md:aspect-[16/10]" : "aspect-[16/10]"
+          }`}
       >
         {imageLoaded ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={project.image}
-            alt={`${project.name} interface`}
-            loading="lazy"
-            onError={() => setImageLoaded(false)}
-            className={`h-full w-full object-cover object-top ${compact ? "md:aspect-[1.18/1]" : "aspect-[16/10]"}`}
-          />
+          <>
+            {/* Default Static Image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={project.image}
+              alt={`${project.name} interface`}
+              loading="lazy"
+              onError={() => setImageLoaded(false)}
+              className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-300 ${isHovered && project.video ? "opacity-0" : "opacity-100"
+                }`}
+            />
+
+            {/* Hover Preview Video */}
+            {project.video && (
+              <video
+                ref={videoRef}
+                src={project.video}
+                muted
+                loop
+                playsInline
+                preload="none"
+                className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+                  }`}
+              />
+            )}
+          </>
         ) : (
-          <div className="grid aspect-[16/10] h-full w-full grid-cols-[18%_1fr] gap-3 bg-[#08090d] p-4">
+          /* Fallback UI (Preserves exact container size) */
+          <div className="absolute inset-0 grid h-full w-full grid-cols-[18%_1fr] gap-3 bg-[#08090d] p-4">
             <div className="space-y-2 border-r border-white/5 pr-2">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="h-2.5 rounded bg-white/[0.06]" />
@@ -134,7 +176,7 @@ function ProjectContent({ project, compact = false }) {
             </div>
           </div>
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
       </motion.div>
 
       <motion.div
@@ -214,7 +256,6 @@ export default function Projects() {
 
   const active = featuredProjects[index];
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -250,7 +291,6 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* View All Projects Trigger (Mobile) */}
         <div className="mt-12 text-center">
           <button
             onClick={() => setIsModalOpen(true)}
@@ -269,9 +309,8 @@ export default function Projects() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className={`pointer-events-none absolute -right-32 top-1/4 h-[28rem] w-[28rem] rounded-full blur-3xl ${
-              accentGlow[active.accent]
-            }`}
+            className={`pointer-events-none absolute -right-32 top-1/4 h-[28rem] w-[28rem] rounded-full blur-3xl ${accentGlow[active.accent]
+              }`}
           />
 
           <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6">
@@ -284,7 +323,6 @@ export default function Projects() {
               </div>
 
               <div className="flex items-center gap-4">
-                {/* View All Projects Trigger Button */}
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs uppercase tracking-wider text-zinc-300 backdrop-blur-md transition-all hover:border-lime/40 hover:bg-lime/10 hover:text-lime"
@@ -292,14 +330,12 @@ export default function Projects() {
                   <FolderGit2 size={14} className="text-lime" /> All Projects ({allProjects.length})
                 </button>
 
-                {/* Progress Indicators */}
                 <div className="flex shrink-0 items-center gap-2" aria-label={`Project ${index + 1} of ${featuredProjects.length}`}>
                   {featuredProjects.map((project, projectIndex) => (
                     <span
                       key={project.name}
-                      className={`h-1 rounded-full transition-all duration-500 ${
-                        projectIndex === index ? "w-10 bg-lime" : "w-4 bg-white/20"
-                      }`}
+                      className={`h-1 rounded-full transition-all duration-500 ${projectIndex === index ? "w-10 bg-lime" : "w-4 bg-white/20"
+                        }`}
                     />
                   ))}
                 </div>
@@ -331,7 +367,6 @@ export default function Projects() {
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative flex max-h-[90vh] w-full max-w-5xl flex-col rounded-2xl border border-white/10 bg-[#0c0d14] shadow-2xl overflow-hidden"
             >
-              {/* Modal Header */}
               <div className="flex items-center justify-between border-b border-white/10 px-6 py-4 bg-black/40">
                 <div className="flex items-center gap-2.5">
                   <FolderGit2 size={18} className="text-lime" />
@@ -348,8 +383,7 @@ export default function Projects() {
                 </button>
               </div>
 
-              {/* Modal Grid Body */}
-              <div className="grid-scroll flex-1 overflow-y-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="flex-1 overflow-y-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
                 {allProjects.map((proj, i) => (
                   <div
                     key={proj.name}
@@ -396,7 +430,6 @@ export default function Projects() {
                 ))}
               </div>
 
-              {/* Modal Footer */}
               <div className="border-t border-white/10 px-6 py-3.5 bg-black/40 text-center font-mono text-[11px] text-zinc-500">
                 Press ESC or click close to return to portfolio.
               </div>

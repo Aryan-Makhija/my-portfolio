@@ -6,9 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
-  { n: "01", year: "2024", title: "Started Development", text: "Fundamentals first: JavaScript, the DOM, HTTP and building small full stack apps end to end.", tags: ["JavaScript", "React", "Git"] },
+  { n: "01", year: "2024 - 2025", title: "Started Development", text: "Fundamentals first: JavaScript, the DOM, HTTP, React and building small full stack apps end to end.", tags: ["JavaScript", "React", "Git"] },
   { n: "02", year: "2025", title: "Full Stack Projects", text: "Shipped real products with authentication, relational data models and deployed environments.", tags: ["Next.js", "PostgreSQL", "Tailwind"] },
-  { n: "03", year: "2025", title: "Advanced Backend", text: "Focused on API design, caching, rate limiting, background jobs and observability.", tags: ["Node.js", "Redis", "Docker"] },
+  { n: "03", year: "2026", title: "Advanced Backend", text: "Focused on API design, caching, rate limiting, background jobs and observability.", tags: ["Node.js", "Redis", "Docker"] },
   { n: "04", year: "2026", title: "AI / RAG / System Design", text: "Retrieval pipelines, vector search, agentic workflows and designing systems that scale.", tags: ["RAG", "LLM APIs", "System Design"] },
 ];
 

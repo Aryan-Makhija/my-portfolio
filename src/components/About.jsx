@@ -19,9 +19,9 @@ function Counter({ to, suffix = "+" }) {
 }
 
 const stats = [
-  { n: 0, l: "Years Development" },
+  { n: 2, l: "Years Development" },
   { n: 6, l: "Projects Shipped" },
-  { n: 290, l: "DSA Problems" },
+  { n: 300, l: "DSA Problems" },
 ];
 
 // angle in degrees around the orbit
