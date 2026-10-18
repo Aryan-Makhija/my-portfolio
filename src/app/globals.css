@@ -62,6 +62,8 @@
   }
 }
 
+.h2 { @apply font-display text-3xl font-bold leading-[1.1] tracking-normal md:text-5xl; }
+
 html {
   color-scheme: dark;
 }
