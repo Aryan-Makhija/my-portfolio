@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 const techCategories = [
   { key: "Frontend", items: ["React", "Next.js", "JavaScript", "Tailwind"], n: "04" },
-  { key: "Backend", items: ["Node.js", "Express", "REST APIs"], n: "03" },
-  { key: "Database", items: ["PostgreSQL", "MongoDB", "Redis"], n: "03" },
-  { key: "DevOps", items: ["Docker", "Git", "AWS"], n: "03" },
-  { key: "AI", items: ["RAG", "LLM APIs", "AI Agents"], n: "03" },
+  { key: "Backend", items: ["Node.js", "Express", "REST APIs","Authentication"], n: "04" },
+  { key: "Database", items: ["PostgreSQL", "MongoDB", "Vector Database" ,"Redis"], n: "04" },
+  { key: "DevOps", items: ["Docker","Nginx", "Git", "Github"], n: "04" },
+  { key: "AI/GenAI", items: ["RAG", "Langchain.js", "Gemini API", "Vector Embeddings", "Semantic Search", "Reranking"], n: "06" },
 ];
 
 // ---- graph geometry (SVG viewBox is 400 x 400, centre = 200,200) ----

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Code, Users, Mail, Send, Check } from "lucide-react";
 
 const links = [
-  { icon: Code, title: "GitHub", sub: "View repositories", href: "https://github.com/" },
-  { icon: Users, title: "LinkedIn", sub: "Let's connect", href: "https://linkedin.com/" },
-  { icon: Mail, title: "Email", sub: "hello@example.com", href: "mailto:hello@example.com" },
+  { icon: Code, title: "GitHub", sub: "View repositories", href: "https://github.com/Aryan-Makhija" },
+  { icon: Users, title: "LinkedIn", sub: "Let's connect", href: "https://linkedin.com/in/aryan-makhija-1a43a6352" },
+  { icon: Mail, title: "Email", sub: "aryanmakhija1030@gmail.com", href: "mailto:aryanmakhija1030@gmail.com" },
 ];
 
 export default function Contact() {

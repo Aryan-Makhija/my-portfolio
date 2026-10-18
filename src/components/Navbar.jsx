@@ -60,9 +60,8 @@ export default function Navbar() {
             <li key={l.id} className="relative">
               <button
                 onClick={() => go(l.id)}
-                className={`relative z-10 rounded-full px-3 py-2 text-sm transition-colors ${
-                  active === l.id ? "text-fg" : "text-muted hover:text-fg"
-                }`}
+                className={`relative z-10 rounded-full px-3 py-2 text-sm transition-colors ${active === l.id ? "text-fg" : "text-muted hover:text-fg"
+                  }`}
               >
                 {active === l.id && (
                   <motion.span
@@ -107,16 +106,19 @@ export default function Navbar() {
                 <li key={l.id}>
                   <button
                     onClick={() => go(l.id)}
-                    className={`w-full rounded-xl px-4 py-3 text-left text-sm ${
-                      active === l.id ? "bg-white/[0.06] text-fg" : "text-muted"
-                    }`}
+                    className={`w-full rounded-xl px-4 py-3 text-left text-sm ${active === l.id ? "bg-white/[0.06] text-fg" : "text-muted"
+                      }`}
                   >
                     {l.label}
                   </button>
                 </li>
               ))}
               <li>
-                <a href="#" className="mt-1 flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm">
+                <a
+                  href="./resume.pdf"
+                  download="Aryan_Makhija_Resume.pdf"
+                  className="mt-1 flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm transition-all hover:border-lime/40 hover:bg-lime/10 hover:text-lime"
+                >
                   <FileText size={14} /> Resume
                 </a>
               </li>

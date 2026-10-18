@@ -12,7 +12,7 @@ const pillars = [
   { icon: Server, title: "Backend & API Development", text: "Clean REST surfaces, validation, auth and predictable errors.", tech: ["Node.js", "Express", "Zod"] },
   { icon: Sparkles, title: "AI-Powered Applications", text: "RAG pipelines and agent workflows wired into real products.", tech: ["RAG", "LLM APIs", "Vectors"] },
   { icon: Database, title: "Database & Architecture", text: "Schema design, indexing, caching and query performance.", tech: ["Drizzle", "Redis", "SQL"] },
-  { icon: Box, title: "Deployment & DevOps", text: "Containerised builds, environments and CI that stays green.", tech: ["Docker", "CI/CD", "AWS"] },
+  { icon: Box, title: "Deployment & DevOps", text: "Containerised builds, environments and CI that stays green.", tech: ["Docker", "CI/CD"] },
 ];
 
 const fade = (i = 0) => ({
