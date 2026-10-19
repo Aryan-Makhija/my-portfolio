@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { Code, ExternalLink, Check, FolderGit2, X, ArrowUpRight } from "lucide-react";
+import { Code, ExternalLink, Check, FolderGit2, X, ArrowUpRight, Play } from "lucide-react";
 
 // Top 3 Featured Projects (for the cinematic scroll section)
 // Note: You can add `video: "/projects/vitalens.mp4"` for each project to support hover video previews!
@@ -17,7 +17,7 @@ const featuredProjects = [
       "Docker containerization & Redis rate limiting",
       "Secure multi-tenant workspace isolation",
     ],
-    stack: ["Langchain.js", "Next.js", "Cohere Reranking", "PineCone", "PostgreSQL", "Docker", "Redis", "Gemini Embedding","Clerk"],
+    stack: ["Langchain.js", "Next.js", "Cohere Reranking", "PineCone", "PostgreSQL", "Docker", "Redis", "Gemini Embedding", "Clerk"],
     accent: "cyan",
     glow: "rgba(20,184,166,0.18)",
     image: "./DocuMind.png",
@@ -35,7 +35,7 @@ const featuredProjects = [
       "Automated Video Curation",
       "Structer Learning Roadmap",
     ],
-    stack: ["Next.js", "Node.js", "PostgresSQL", "LLM APIs","Youtube APIs", "Tailwind", "Docker", "Nginx Load Balancing" ,"Clerk" ],
+    stack: ["Next.js", "Node.js", "PostgresSQL", "LLM APIs", "Youtube APIs", "Tailwind", "Docker", "Nginx Load Balancing", "Clerk"],
     accent: "violet",
     glow: "rgba(139,92,246,0.20)",
     image: "./EduAi.png",
@@ -73,7 +73,7 @@ const allProjects = [
     summary: "Real-time messaging application with presence indicators.",
     problem: "Keeping chat states synchronized across multiple concurrent users without latency overhead.",
     features: ["Real-time contact stack ordering", "Presence indicators", "Socket.io event management"],
-    stack: ["React", "Node.js", "Web Sockets","Express", "MongoDB"],
+    stack: ["React", "Node.js", "Web Sockets", "Express", "MongoDB"],
     image: "/projects/nexus.png",
     video: "/projects/nexus.mp4",
     github: "https://github.com/Aryan-Makhija/NexusChat.git",
@@ -120,65 +120,75 @@ function ProjectContent({ project, compact = false }) {
       className={`grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] ${compact ? "md:grid-cols-[0.9fr_1.1fr] md:gap-7 lg:grid-cols-[1.05fr_1fr] lg:gap-10" : ""
         }`}
     >
-      <motion.div
-        key={`${project.name}-image`}
-        initial={{ opacity: 0, scale: 0.94, y: 25, filter: "blur(12px)" }}
-        animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-        exit={{ opacity: 0, scale: 1.04, y: -25, filter: "blur(12px)" }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={`relative order-xl overflow-hidden rounded-xl border border-white/10 bg-[#0b0c12] shadow-2xl w-full ${compact ? "md:aspect-[16/10]" : "aspect-[16/10]"
-          }`}
-      >
-        {imageLoaded ? (
-          <>
-            {/* Default Static Image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={project.image}
-              alt={`${project.name} interface`}
-              loading="lazy"
-              onError={() => setImageLoaded(false)}
-              className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-300 ${isHovered && project.video ? "opacity-0" : "opacity-100"
-                }`}
-            />
+      <div className="order-1 flex flex-col gap-2">
 
-            {/* Hover Preview Video */}
-            {project.video && (
-              <video
-                ref={videoRef}
-                src={project.video}
-                muted
-                loop
-                playsInline
-                preload="none"
-                className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+
+        <div className="flex items-center justify-between px-1">
+          <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+            <Play size={10} className="text-lime fill-lime" /> Hover image to play demo video
+          </span>
+          <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider">Preview</span>
+        </div>
+        <motion.div
+          key={`${project.name}-image`}
+          initial={{ opacity: 0, scale: 0.94, y: 25, filter: "blur(12px)" }}
+          animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 1.04, y: -25, filter: "blur(12px)" }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className={`relative order-xl overflow-hidden rounded-xl border border-white/10 bg-[#0b0c12] shadow-2xl w-full ${compact ? "md:aspect-[16/10]" : "aspect-[16/10]"
+            }`}
+        >
+
+          {imageLoaded ? (
+            <>
+              {/* Default Static Image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.image}
+                alt={`${project.name} interface`}
+                loading="lazy"
+                onError={() => setImageLoaded(false)}
+                className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-300 ${isHovered && project.video ? "opacity-0" : "opacity-100"
                   }`}
               />
-            )}
-          </>
-        ) : (
-          /* Fallback UI (Preserves exact container size) */
-          <div className="absolute inset-0 grid h-full w-full grid-cols-[18%_1fr] gap-3 bg-[#08090d] p-4">
-            <div className="space-y-2 border-r border-white/5 pr-2">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-2.5 rounded bg-white/[0.06]" />
-              ))}
-            </div>
-            <div className="space-y-3">
-              <div className="grid grid-cols-4 gap-2">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="h-10 rounded-lg bg-white/[0.05]" />
+
+              {/* Hover Preview Video */}
+              {project.video && (
+                <video
+                  ref={videoRef}
+                  src={project.video}
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"
+                    }`}
+                />
+              )}
+            </>
+          ) : (
+            /* Fallback UI (Preserves exact container size) */
+            <div className="absolute inset-0 grid h-full w-full grid-cols-[18%_1fr] gap-3 bg-[#08090d] p-4">
+              <div className="space-y-2 border-r border-white/5 pr-2">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-2.5 rounded bg-white/[0.06]" />
                 ))}
               </div>
-              <div className="h-24 rounded-lg bg-gradient-to-r from-lime/20 via-lime/5 to-transparent border border-lime/10" />
+              <div className="space-y-3">
+                <div className="grid grid-cols-4 gap-2">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="h-10 rounded-lg bg-white/[0.05]" />
+                  ))}
+                </div>
+                <div className="h-24 rounded-lg bg-gradient-to-r from-lime/20 via-lime/5 to-transparent border border-lime/10" />
+              </div>
             </div>
-          </div>
-        )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-      </motion.div>
-
+          )}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+        </motion.div>
+      </div>
       <motion.div
         key={`${project.name}-copy`}
         initial={{ opacity: 0, y: 20 }}
@@ -237,6 +247,8 @@ function ProjectContent({ project, compact = false }) {
           >
             Live Demo <ExternalLink className="h-4 w-4" />
           </a>
+
+
         </div>
       </motion.div>
     </div>
@@ -286,6 +298,7 @@ export default function Projects() {
               <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
                 {String(idx + 1).padStart(2, "0")} / {String(featuredProjects.length).padStart(2, "0")}
               </p>
+
               <ProjectContent project={project} />
             </div>
           ))}
