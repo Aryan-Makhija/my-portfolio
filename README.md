@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 👨‍💻 Personal Portfolio Website
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat&logo=react)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animations-0055FF?style=flat&logo=framer)](https://www.framer.com/motion/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=flat&logo=vercel)](https://vercel.com/)
 
-First, run the development server:
+<br />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> ### 🚀 [**>> Click Here to Visit My Live Portfolio Website <<**](https://my-portfolio-omega-eight-44.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# 👋 Welcome to My Portfolio
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Hello! I am a passionate **Full-Stack Web Developer** currently pursuing my Bachelor of Technology in Information Technology (2023–2027) at **Bharati Vidyapeeth College of Engineering, Delhi**. 
 
-## Learn More
+This repository houses the source code for my personal developer portfolio—designed to showcase my journey, technical expertise, and production-ready applications spanning full-stack architectures, AI/RAG systems, and cloud deployment pipelines.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 🌟 Featured Projects
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Here are a few highlights of the major platforms and applications featured on my portfolio:
 
-## Deploy on Vercel
+* **DocuMind.ai** — A containerized multi-user PDF RAG platform built with Docker, NGINX load balancing, Redis rate limiting, Pinecone vector storage, Cohere reranking, and Google Gemini AI.
+* **EduAI** — An AI-powered online learning platform that instantly generates custom, multi-chapter curricula complete with automated YouTube video curation.
+* **ShopVerse** — A modern multi-vendor e-commerce platform equipped with vendor analytics dashboards, real-time product comparisons, and Cloudinary media optimization.
+* **VitaLens** — An AI-powered health diagnosis and wellness platform engineered with Next.js, PostgreSQL, Drizzle ORM, and Zod validation.
+* **Nexus Chat** — A real-time messaging web application built using the MERN stack and Socket.io.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 🛠️ Core Competencies & Specializations
+
+* **Frontend Engineering**: Next.js (App Router), React, TypeScript, Tailwind CSS, Shadcn UI, Framer Motion.
+* **Backend & Databases**: Node.js, Express.js, PostgreSQL, Neon Database, Drizzle ORM, MongoDB, Redis.
+* **AI & RAG Systems**: LangChain, Pinecone vector databases, Google Gemini API integrations, Cohere semantic reranking.
+* **DevOps & Infrastructure**: Docker, Docker Compose, NGINX reverse proxies, Vercel edge deployment.
+
+---
+
+# 📫 Let's Connect & Collaborate
+
+I am always open to exciting opportunities, software engineering roles, and open-source collaborations. Feel free to reach out through any of the channels below:
+
+* 🌐 **Portfolio**: [your-portfolio-url.vercel.app](https://my-portfolio-omega-eight-44.vercel.app/)
+* 🐙 **GitHub**: [github.com/your-username](https://github.com/Aryan-Makhija)
+* 💼 **LinkedIn**: [linkedin.com/in/your-profile](https://www.linkedin.com/in/aryan-makhija-1a43a6352)
+* 📧 **Email**: aryanmakhija1030@gmail.com
+
+---
+
+# 🙏 Thank You
+
