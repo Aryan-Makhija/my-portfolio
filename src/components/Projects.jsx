@@ -10,7 +10,7 @@ const featuredProjects = [
   {
     name: "DocuMind.ai",
     summary: "Multi-tenant document intelligence platform with conversational RAG.",
-    problem: "Users struggle to extract precise insights across large unstructured documentation repositories.",
+    problem: "Extracting specific information from large PDF documents is often time-consuming and inefficient, as users must manually search through lengthy files to find relevant details.",
     features: [
       "Conversational RAG pipeline",
       "Pinecone vector search & Cohere reranking",
@@ -28,12 +28,12 @@ const featuredProjects = [
   {
     name: "EduAI",
     summary: "Instant, AI-Driven Personalized Course Generation Platform",
-    problem: "Course content is static, so learners stall the moment they hit something they don't understand.",
+    problem: "Learning a new subject often requires learners to gather information from multiple sources, such as textbooks, online articles, and video tutorials. Creating a structured learning path that matches an individual's interests, preferred learning depth, and pace can be time-consuming and challenging.",
     features: [
-      "AI tutor grounded in course material",
+      "AI-Generated Curricula",
       "Adaptive learning paths and progress state",
-      "Streaming responses with graceful fallbacks",
-      "Instructor content pipeline",
+      "Automated Video Curation",
+      "Structer Learning Roadmap",
     ],
     stack: ["Next.js", "Node.js", "PostgresSQL", "LLM APIs","Youtube APIs", "Tailwind", "Docker", "Nginx Load Balancing" ,"Clerk" ],
     accent: "violet",
@@ -46,12 +46,12 @@ const featuredProjects = [
   {
     name: "Vitalens",
     summary: "AI-Powered Early Health Diagnosis & Wellness Monitoring Platform",
-    problem: "People collect health data everywhere but never get one clear, trustworthy read on what it means.",
+    problem: "Many people fail to identify potential health problems at an early stage due to a lack of continuous health monitoring, limited awareness of risk factors, and delayed access to personalized healthcare guidance.",
     features: [
       "Symptom analysis with structured AI output",
-      "Longitudinal vitals dashboard",
-      "Typed schema validation across the stack",
-      "Role-aware auth and session handling",
+      "Monitor lifestyle and wellness indicators.",
+      "Prevent unsafe AI-generated advice in critical cases.",
+      "Maintain diagnosis history and recovery reports.",
     ],
     stack: ["Next.js", "PostgreSQL", "Drizzle ORM", "Gemini AI", "Zod", "Clerk", "Docker"],
     accent: "mint",

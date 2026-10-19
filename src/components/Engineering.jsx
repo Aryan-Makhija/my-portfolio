@@ -8,18 +8,25 @@ const flows = [
 ];
 const tags = ["API Design", "Authentication", "Database Design", "Caching", "Rate Limiting", "Background Jobs", "AI / RAG", "Docker", "Scalable Architecture"];
 const pillars = [
-  { icon: Layers, title: "Full Stack Applications", text: "Product-grade apps from data model to polished interface.", tech: ["Next.js", "React", "PostgreSQL"] },
-  { icon: Server, title: "Backend & API Development", text: "Clean REST surfaces, validation, auth and predictable errors.", tech: ["Node.js", "Express", "Zod"] },
-  { icon: Sparkles, title: "AI-Powered Applications", text: "RAG pipelines and agent workflows wired into real products.", tech: ["RAG", "LLM APIs", "Vectors"] },
-  { icon: Database, title: "Database & Architecture", text: "Schema design, indexing, caching and query performance.", tech: ["Drizzle", "Redis", "SQL"] },
-  { icon: Box, title: "Deployment & DevOps", text: "Containerised builds, environments and CI that stays green.", tech: ["Docker", "CI/CD"] },
+  { icon: Layers, title: "Full Stack Applications", text: "Product-grade apps from data model to polished interface.", tech: ["Next.js", "React","JavaScript", "Databases"] },
+  { icon: Server, title: "Backend & API Development", text: "Clean REST surfaces, validation, auth and predictable errors.", tech: ["Node.js", "Express", "Zod", "RestAPIs", "Authentication", "System Design" ] },
+  { icon: Sparkles, title: "AI-Powered Applications", text: "RAG pipelines and agent workflows wired into real products.", tech: ["RAG","Langchain","PineCone", "LLM APIs", "Vectors"] },
+  { icon: Database, title: "Database & Architecture", text: "Schema design, indexing, caching and query performance.", tech: ["MongoDb", "PostgresSQL" , "Drizzle","PineCone", "Redis", "SQL"] },
+  { icon: Box, title: "Deployment & DevOps", text: "Containerised builds, environments and CI that stays green.", tech: ["Docker","Nginx", "Reverse Proxy","System Desing", "CI/CD"] },
 ];
 
-const fade = (i = 0) => ({
-  initial: { opacity: 0, y: 36 },
+// const fade = (i = 0) => ({
+//   initial: { opacity: 0, y: 36 },
+//   whileInView: { opacity: 1, y: 0 },
+//   viewport: { once: true, margin: "-60px" },
+//   transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+// });
+
+const fade = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  viewport: { once: true },
+  transition: { duration: 0.6, delay: delay * 0.1 },
 });
 
 export default function Engineering() {
@@ -65,7 +72,7 @@ export default function Engineering() {
           ))}
         </div>
 
-        <motion.div {...fade()} className="mt-16">
+        {/* <motion.div {...fade()} className="mt-16">
           <p className="eyebrow">How I work</p>
           <h3 className="h2 mt-4 max-w-[14ch]">Five ways I ship the value.</h3>
         </motion.div>
@@ -79,8 +86,67 @@ export default function Engineering() {
               <div className="mt-5 flex flex-wrap gap-2">{p.tech.map((t) => <span key={t} className="chip rounded-md">{t}</span>)}</div>
             </motion.div>
           ))}
-        </div>
+        </div> */}
+
+
+          <motion.div {...fade()} className="text-center sm:text-leftm mt-10">
+            <p className="eyebrow font-mono text-xs uppercase tracking-[0.2em] text-lime">How I work</p>
+            <h3 className="h2 mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              Five ways I ship value.
+            </h3>
+            <p className="mt-2 text-sm text-muted">An intentional engineering framework optimized for production reliability.</p>
+          </motion.div>
+
+          {/* Strict 2-Column Grid Layout (5th card spans full width to prevent empty orphan slots) */}
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {pillars.map((p, i) => {
+              // Check if it's the 5th card (index 4) and we have an odd number of cards
+              const isLastOddCard = i === 4 && pillars.length % 2 !== 1; // Or simply i === 4 since there are 5 cards
+
+              return (
+                <motion.div
+                  key={p.title}
+                  {...fade(i)}
+                  whileHover={{ y: -6 }}
+                  className={`card card-hover relative flex flex-col justify-between p-6 overflow-hidden ${i === 4 ? "md:col-span-2 bg-gradient-to-br from-card via-card to-lime/[0.03]" : ""
+                    }`}
+                >
+                  {/* Subtle top-right corner glow on hover/active */}
+                  <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-lime/[0.04] blur-2xl pointer-events-none" />
+
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-bg text-lime shadow-inner">
+                        {p.icon && <p.icon size={18} />}
+                      </span>
+                      <span className="font-mono text-[11px] text-muted/60">0{i + 1}</span>
+                    </div>
+
+                    <h4 className="mt-6 font-display text-xl font-semibold tracking-tight text-fg">
+                      {p.title}
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                      {p.text}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-2">
+                    {p.tech?.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-muted-foreground backdrop-blur-md"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+ 
+
       </div>
-    </section>
+    </section >
   );
 }

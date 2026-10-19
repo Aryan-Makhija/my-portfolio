@@ -20,7 +20,7 @@ function Counter({ to, suffix = "+" }) {
 
 const stats = [
   { n: 2, l: "Years Development" },
-  { n: 6, l: "Projects Shipped" },
+  { n: 6, l: "Projects Engineered" },
   { n: 300, l: "DSA Problems" },
 ];
 
