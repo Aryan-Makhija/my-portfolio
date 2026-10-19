@@ -29,7 +29,8 @@ export default function Page() {
       <Engineering />
       <Stats />
       <Contact />
-      <ChatWidget />
+      {/* future Scope */}
+      {/* <ChatWidget /> */}
     </main>
   );
 }

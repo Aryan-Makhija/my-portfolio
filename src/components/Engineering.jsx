@@ -15,12 +15,7 @@ const pillars = [
   { icon: Box, title: "Deployment & DevOps", text: "Containerised builds, environments and CI that stays green.", tech: ["Docker","Nginx", "Reverse Proxy","System Desing", "CI/CD"] },
 ];
 
-// const fade = (i = 0) => ({
-//   initial: { opacity: 0, y: 36 },
-//   whileInView: { opacity: 1, y: 0 },
-//   viewport: { once: true, margin: "-60px" },
-//   transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
-// });
+
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -72,23 +67,7 @@ export default function Engineering() {
           ))}
         </div>
 
-        {/* <motion.div {...fade()} className="mt-16">
-          <p className="eyebrow">How I work</p>
-          <h3 className="h2 mt-4 max-w-[14ch]">Five ways I ship the value.</h3>
-        </motion.div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pillars.map((p, i) => (
-            <motion.div key={p.title} {...fade(i)} whileHover={{ y: -6 }} className="card card-hover p-5 sm:p-6">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-bg text-lime"><p.icon size={17} /></span>
-              <h4 className="mt-8 font-display text-lg font-semibold">{p.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{p.text}</p>
-              <div className="mt-5 flex flex-wrap gap-2">{p.tech.map((t) => <span key={t} className="chip rounded-md">{t}</span>)}</div>
-            </motion.div>
-          ))}
-        </div> */}
-
-
+ 
           <motion.div {...fade()} className="text-center sm:text-leftm mt-10">
             <p className="eyebrow font-mono text-xs uppercase tracking-[0.2em] text-lime">How I work</p>
             <h3 className="h2 mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
