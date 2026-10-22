@@ -45,9 +45,9 @@ Here are a few highlights of the major platforms and applications featured on my
 
 I am always open to exciting opportunities, software engineering roles, and open-source collaborations. Feel free to reach out through any of the channels below:
 
-* 🌐 **Portfolio**: [your-portfolio-url.vercel.app](https://my-portfolio-omega-eight-44.vercel.app/)
-* 🐙 **GitHub**: [github.com/your-username](https://github.com/Aryan-Makhija)
-* 💼 **LinkedIn**: [linkedin.com/in/your-profile](https://www.linkedin.com/in/aryan-makhija-1a43a6352)
+* 🌐 **Portfolio**: (https://my-portfolio-omega-eight-44.vercel.app/)
+* 🐙 **GitHub**: (https://github.com/Aryan-Makhija)
+* 💼 **LinkedIn**: (https://www.linkedin.com/in/aryan-makhija-1a43a6352)
 * 📧 **Email**: aryanmakhija1030@gmail.com
 
 ---
